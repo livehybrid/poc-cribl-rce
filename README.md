@@ -4,7 +4,7 @@ This was put together to demonstrate an insecurity in the tool, in order for a f
 # Info
 Tested on Cribl v1.5.0 - Previous versions not tested but likely vulnerable.  
 A valid JWT token can be transfered from and injected into the session of another Cribl instance, giving the user unauthorised access.  
-Furtermore, the encryption key used on to generate the JWT/Session can be used to create a valid session for any username, with an extended expiry.  
+Furthermore, the encryption key used on to generate the JWT/Session can be used to create a valid session for any username, with an extended expiry.  
   
 This, combined with the ability to run scripts within Cribl allows a  remote attacker to run malicious code on a Crible instance in order to gain further control.  
 An example of such can be seen below, using the scripts  page and a long expiry JWT token, it was possible to create a reverse shell.  
